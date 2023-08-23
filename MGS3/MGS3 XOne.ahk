@@ -20,7 +20,28 @@ Loop
     Loop, 1
 	{
         BT := XInput_GetState(A_Index-1).wButtons
-        
+
+
+                    /*
+                    ; Start of Toggle R3
+                    if (XInputButtonIsDown( "RStick", BT ))
+                    {
+                        if (R3 = 0)
+                        {
+                            SendInput {Numpad6 Down}
+                            Sleep 500
+                            R3 := 1
+                        }
+                        else
+                        {
+                            SendInput {Numpad6 Up}
+                            Sleep 200
+                            R3 := 0
+                        }
+                    }
+                    ; End of Toggle R3
+                    */ 
+
         ; Start of Square to Numpad3
         if (!XInputButtonIsDown( "X", BT ) && holdingX = 1)
         {
