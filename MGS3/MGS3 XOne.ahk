@@ -2,10 +2,9 @@
 #Include <ButtonIsDown>
 #SingleInstance force
 #Persistent 
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#NoEnv
+SendMode Input
+SetWorkingDir %A_ScriptDir%
 
 XInput_Init()
 L3 := 0
@@ -20,27 +19,6 @@ Loop
     Loop, 1
 	{
         BT := XInput_GetState(A_Index-1).wButtons
-
-
-                    /*
-                    ; Start of Toggle R3
-                    if (XInputButtonIsDown( "RStick", BT ))
-                    {
-                        if (R3 = 0)
-                        {
-                            SendInput {Numpad6 Down}
-                            Sleep 500
-                            R3 := 1
-                        }
-                        else
-                        {
-                            SendInput {Numpad6 Up}
-                            Sleep 200
-                            R3 := 0
-                        }
-                    }
-                    ; End of Toggle R3
-                    */ 
 
         ; Start of Square to Numpad3
         if (!XInputButtonIsDown( "X", BT ) && holdingX = 1)
