@@ -128,10 +128,10 @@ while True:
                 
                 else:
                     if not gamepad.get_button(SQUARE):
-                        keyboard.release(numpad[1])
                         keyboard.press(numpad[5])
-                        time.sleep(1/5)
+                        time.sleep(1/40)
                         keyboard.release(numpad[3]) # stop firing
+                        time.sleep(1/40)
                         keyboard.release(numpad[5])
 
                     keyboard.release(numpad[4]) # activate L1
@@ -184,14 +184,15 @@ while True:
                                                 if event.value >= -1 and pull_down_toggle:
                                                     pull_down_toggle = 0
                                                     print("pulling down")
-                                                    keyboard.release(numpad[1])
-                                                    keyboard.press(numpad[5])
-                                                    time.sleep(1/5)
-                                                    keyboard.release(numpad[3]) # stop firing
-                                                    keyboard.release(numpad[5])
+                                                    keyboard.press(numpad[7])
                                                     time.sleep(1/20)
-                                                    keyboard.press(numpad[1])
+                                                    keyboard.press(numpad[8])
+                                                    time.sleep(1/20)
+                                                    keyboard.release(numpad[3])
+                                                    keyboard.release(numpad[7])
+                                                    keyboard.release(numpad[8])
                                                     keyboard.press(numpad[6])
+                                                    break
                                         
                                         # fire
                                         if event.type == pygame.JOYBUTTONUP:
