@@ -89,10 +89,10 @@ while True:
             # proper aim with L1
             elif event.button == L1:
                 aim_switch = 1 # used to properly alternate the auto aim state
-                keyboard.press(numpad[1]) # activate light press
                 keyboard.press(numpad[4]) # activate L1
 
                 if not gamepad.get_button(SQUARE): # lightly press fire to aim
+                    keyboard.press(numpad[1]) # activate light press
                     keyboard.press(numpad[3])
 
                 # aim loop
@@ -114,28 +114,30 @@ while True:
                             if event.button == SQUARE:
                                 keyboard.release(numpad[1]) # deactivate light press to start firing
 
-                                while gamepad.get_button(SQUARE) and gamepad.get_button(L1): # wait for square or L1 to be released
-                                    for event in pygame.event.get():
-                                        if event.type == pygame.JOYBUTTONUP:
-                                            if event.button == SQUARE:
-                                                keyboard.press(numpad[1]) # reactivate light press
-                                                keyboard.release(numpad[3]) # stop firing
-                                                time.sleep(1/20)
-                                                keyboard.press(numpad[3]) # press fire again to keep auto aim
-                                        time.sleep(1/60)
-                    
+                        if event.type == pygame.JOYBUTTONUP:
+                            if event.button == SQUARE:
+                                keyboard.press(numpad[1]) # reactivate light press
+                                keyboard.release(numpad[3]) # stop firing
+                                time.sleep(1/20)
+                                keyboard.press(numpad[3]) # press fire again to keep auto aim
+    
                     time.sleep(1/60)
                 
                 else:
                     if not gamepad.get_button(SQUARE):
-                        keyboard.press(numpad[5])
+                        keyboard.press(numpad[7])
+                        time.sleep(1/20)
+                        keyboard.press(numpad[8])
+                        time.sleep(1/20)
+                        keyboard.release(numpad[3])
+                        keyboard.release(numpad[7])
+                        keyboard.release(numpad[8])
                         time.sleep(1/40)
-                        keyboard.release(numpad[3]) # stop firing
-                        time.sleep(1/40)
-                        keyboard.release(numpad[5])
 
                     keyboard.release(numpad[4]) # activate L1
                     keyboard.release(numpad[1]) # activate light press
+
+                time.sleep(1/40)
         
             # no pressure grabbing
             elif event.button == CIRCLE:
@@ -228,4 +230,4 @@ while True:
             if event.button == L3:
                 keyboard.release(numpad[6])
     
-    time.sleep(0.01)
+    time.sleep(1/30)
